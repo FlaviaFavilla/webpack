@@ -19,18 +19,18 @@ module.exports = {
             {
                 test: /\.css$/,
                 use: ['style-loader', 'css-loader',]
-            }, 
+            },
             {
                 test: /\.scss$/,
-                use: ['style-loader', 'css-loader', 'sass-loader']               
+                use: ['style-loader', 'css-loader', 'sass-loader']
             },
             {
                 test: /\.html$/,
                 use: ["raw-loader"]
             },
-            { 
-                test: /\.twig$/, 
-                use: "twig-loader" 
+            {
+                test: /\.twig$/,
+                use: ["twig-loader"]
             }
         ],
     },
