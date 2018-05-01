@@ -23,7 +23,8 @@ module.exports = {
   mode: 'development',
   plugins: [
     new HtmlWebpackPlugin({
-	       	title: 'My webpack Test',
-    	})
+        title: 'My test',
+        template:  './src/index.html'
+    }),
   ]
 };
