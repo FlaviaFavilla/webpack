@@ -1,19 +1,13 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');  // crea html da punto di inizio
-
 const merge = require('webpack-merge');
-const webpack = require('webpack');
-const CleanWebpackPlugin = require('clean-webpack-plugin'); //cancella la cart Dist
+const common = require('./webpack.common.js');
+// const CleanWebpackPlugin = require('clean-webpack-plugin'); //cancella la cart Dist
 
-module.exports = {
-    entry: {
-        'app': './src/index.js',
-        'css': './src/scss/main.scss'
-    },
-    output: {
-        filename: '[name].bundle.js', // crea un file per ogni entry-point
-        path: path.resolve(__dirname, 'dist') // mette il file nella cartella dist
-    },
+const HtmlWebpackPlugin = require('html-webpack-plugin');  // crea html da punto di inizio
+const webpack = require('webpack');
+
+module.exports  = merge(common, {
+
     module: {
         rules: [
             {
@@ -36,7 +30,7 @@ module.exports = {
     },
     devtool: 'inline-source-map',
     plugins: [
-        new CleanWebpackPlugin(['dist']),  //cancella dist ad ogni build
+        //new CleanWebpackPlugin(['dist']),  //cancella dist ad ogni build
         new HtmlWebpackPlugin({
             template:  './src/index.html' // da dove prende index html
         }),
@@ -48,4 +42,4 @@ module.exports = {
         hot: true
     },
     watch: true
-};
+});
