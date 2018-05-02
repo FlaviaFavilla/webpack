@@ -1,10 +1,11 @@
 const webpack = require('webpack');
+const path = require('path');
 const merge = require('webpack-merge');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const common = require('./webpack.common.js');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');  // crea html da punto di inizio
 const CleanWebpackPlugin = require('clean-webpack-plugin'); //cancella la cart Dist
+//const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = merge(common, {
 
@@ -34,9 +35,9 @@ module.exports = merge(common, {
         new HtmlWebpackPlugin({
             template:  './src/index.html' // da dove prende index html
         }),
-        new UglifyJSPlugin({  // minifica il codice
-          sourceMap: true
-        }),
+        // new UglifyJSPlugin({  // minifica il codice
+        //   sourceMap: true
+        // }),
         new webpack.DefinePlugin({
           'process.env.NODE_ENV': JSON.stringify('production') //indica ai plugin il mode per ottimizzare i pacchetti
         })
