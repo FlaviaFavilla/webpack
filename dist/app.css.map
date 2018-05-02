@@ -1,1 +1,0 @@
-{"version":3,"sources":["webpack:///./src/scss/main.scss"],"names":[],"mappings":"AAAA;AACA,kBAAkB;;AAElB;AACA;AACA,wBAAwB","file":"app.css","sourcesContent":["h1 {\n  color: deeppink; }\n\n.div .p {\n  background: green;\n  border: 1px solid red; }\n"],"sourceRoot":""}
