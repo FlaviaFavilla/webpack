@@ -6,7 +6,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin'); //cancella la cart D
 module.exports = {
     entry: {
         'app': './src/index.js',
-        'css': './src/scss/main.scss'
+      //  'css': './src/scss/main.scss'
     },
     output: {
         filename: '[name].bundle.js', // crea un file per ogni entry-point
