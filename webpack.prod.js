@@ -9,6 +9,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin"); //estrae il file css
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin"); // minimizza il css
 
+
 module.exports = merge(common, {
   optimization: {
     minimizer: [
@@ -24,23 +25,21 @@ module.exports = merge(common, {
         rules: [
             {
               test: /\.scss$/,
-              use: [ MiniCssExtractPlugin.loader, "css-loader", 'sass-loader']
-            },
-            {
-                test: /\.html$/,
-                use: ["raw-loader"]  //allows importing files as a String
-            },
-            {
-                test: /\.twig$/,
-                use: ["twig-loader"]
+              use: [ MiniCssExtractPlugin.loader, "css-loader", 'sass-loader']  //estrae il css
             }
         ],
     },
     devtool: 'source-map',
     plugins: [
-        new CleanWebpackPlugin(['dist']),  //cancella dist ad ogni build
+        new CleanWebpackPlugin(['build']),  //cancella contenuto build ad ogni re-build
         new HtmlWebpackPlugin({
-            template:  './src/index.html' // da dove prende index html
+            template:  './src/index.html.twig' // da dove prende index html
+        }),
+        new HtmlWebpackPlugin({
+            filename: 'help.html',
+            template:  './src/help.html.twig',
+            helper: require('./src/help.js'),   // file con opzioni aggiuntive da passare alla pagina
+            inject: false
         }),
         new webpack.DefinePlugin({
           'process.env.NODE_ENV': JSON.stringify('production') //indica ai plugin il mode per ottimizzare i pacchetti
@@ -50,7 +49,7 @@ module.exports = merge(common, {
         })
     ],
     devServer: {
-        contentBase: path.join(__dirname, "dist"),
+        contentBase: path.join(__dirname, "build"),
         hot: true
     },
 });

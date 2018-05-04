@@ -1,16 +1,33 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');  // crea html da punto di inizio
-const webpack = require('webpack');
-const CleanWebpackPlugin = require('clean-webpack-plugin'); //cancella la cart Dist
 
 module.exports = {
     entry: {
         'app': './src/index.js',
-      //  'css': './src/scss/main.scss'
+        'twig': './src/help.js',
     },
     output: {
         filename: '[name].bundle.js', // crea un file per ogni entry-point
-        path: path.resolve(__dirname, 'dist') // mette il file nella cartella dist
+        path: path.resolve(__dirname, 'build') // mette il file nella cartella build
+    },
+    module: {
+        rules: [
+            {
+                test: /\.html$/,
+                use: ["raw-loader"]  //allows importing files as a String
+            },
+            {
+                test: /\.twig$/,
+                use: ["twig-loader"]
+            },
+            {
+                test: /\.(png|svg|jpg|gif)$/,
+                use: ['file-loader']
+            },
+            {
+                test: /\.(woff|woff2|eot|ttf|otf)$/,
+                use: ['file-loader']
+            }
+        ],
     },
 
 };
