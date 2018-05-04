@@ -3,7 +3,7 @@ const path = require('path');
 module.exports = {
     entry: {
         'app': './src/index.js',
-        'twig': './src/help.js',
+       // 'css': './src/scss/variables.scss'
     },
     output: {
         filename: '[name].bundle.js', // crea un file per ogni entry-point
